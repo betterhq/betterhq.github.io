@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Java集合包学习总结 | 来一杯82年的Java</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Java集合包学习总结</h1><a id="logo" href="/.">来一杯82年的Java</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/historys/"><i class="fa fa-book"> 历史</i></a><a href="/comments/"><i class="fa fa-comments"> 留言</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Java集合包学习总结</h1><div class="post-meta">Aug 28, 2018</div><div class="post-content"><h3 id="面试必问的集合包，一些特点写下来方便记忆，当然深入理解还是要通过源码，以下总结于jdk1-7的集合包"><a href="#面试必问的集合包，一些特点写下来方便记忆，当然深入理解还是要通过源码，以下总结于jdk1-7的集合包" class="headerlink" title="面试必问的集合包，一些特点写下来方便记忆，当然深入理解还是要通过源码，以下总结于jdk1.7的集合包"></a>面试必问的集合包，一些特点写下来方便记忆，当然深入理解还是要通过源码，以下总结于jdk1.7的集合包</h3><a id="more"></a>
+<h3 id="集合包总体架构："><a href="#集合包总体架构：" class="headerlink" title="集合包总体架构："></a>集合包总体架构：</h3><p><img src="https://note.youdao.com/yws/api/personal/file/WEBbf0be22305a72d7d0c9317b9834ef745?method=download&amp;shareKey=dd8c60b3138593bdf922306adee24f8a" alt="集合包总体架构"></p>
+<h2 id="List："><a href="#List：" class="headerlink" title="List："></a>List：</h2><h4 id="ArrayList："><a href="#ArrayList：" class="headerlink" title="ArrayList："></a>ArrayList：</h4><ul>
+<li>基于动态数组实现。</li>
+<li>数组的容量根据实际需求变化，空构造器的默认长度是10。</li>
+<li>非线程安全。</li>
+</ul>
+<h4 id="LinkedList："><a href="#LinkedList：" class="headerlink" title="LinkedList："></a>LinkedList：</h4><ul>
+<li>基于双向链表实现。</li>
+<li>Entry<e>是LinkedList中的一个内部类。</e></li>
+<li>空构造器默认仅含一个头节点Entry<e> header的空双向链表。</e></li>
+<li>顺序访问比较高效，随机访问效率极低。</li>
+<li>非线程安全。</li>
+</ul>
+<h4 id="Vector："><a href="#Vector：" class="headerlink" title="Vector："></a>Vector：</h4><ul>
+<li>是一个矢量队列，支持增加、删除、修改、遍历等操作。</li>
+<li>与ArrayList数据结构类似，同样基于数组实现。</li>
+<li>线程安全。</li>
+</ul>
+<h4 id="Stack："><a href="#Stack：" class="headerlink" title="Stack："></a>Stack：</h4><ul>
+<li>继承于Vector，是栈。</li>
+<li>同样基于数组实现。</li>
+<li>线程安全。</li>
+</ul>
+<h2 id="Map："><a href="#Map：" class="headerlink" title="Map："></a>Map：</h2><h4 id="HashMap："><a href="#HashMap：" class="headerlink" title="HashMap："></a>HashMap：</h4><ul>
+<li>是一个散列表，存储内容是key-value键值对，内部类Entry&lt;K,V&gt;是一个单向链表，默认初始容量是16，加载因子为0.75。</li>
+<li>容量指哈希桶的数量，加载因子是哈希表在自动增加容量之前可以达到多满的一个尺度。</li>
+<li>当哈希表中的条目数超出了加载因子与当前容量的乘积时，则要对该哈希表进行 rehash 操作（即重建内部数据结构）。</li>
+<li>使用拉链法解决哈希冲突。</li>
+<li>允许空（null）键值。</li>
+<li>非线程安全。</li>
+</ul>
+<h4 id="HashTable："><a href="#HashTable：" class="headerlink" title="HashTable："></a>HashTable：</h4><ul>
+<li>数据结构和HashMap类似，也是使用拉链法解决哈希冲突。</li>
+<li>不允许空（null）键值。</li>
+<li>线程安全。</li>
+</ul>
+<h4 id="TreeMap："><a href="#TreeMap：" class="headerlink" title="TreeMap："></a>TreeMap：</h4><ul>
+<li>是一个有序的key-value列表，基于红黑树实现，该映射根据其键的自然顺序进行排序。</li>
+<li>支持null值，默认不支持null键，通过传入Comparator比较器的方式可以实现支持null键。</li>
+<li>非线程安全。</li>
+</ul>
+<h4 id="WeakHashMap："><a href="#WeakHashMap：" class="headerlink" title="WeakHashMap："></a>WeakHashMap：</h4><ul>
+<li>数据结构和HashMap类似。</li>
+<li>允许空（null）键值。</li>
+<li>非线程安全。</li>
+<li>WeakHashMap的键为弱键，当某“弱键”不再被其它对象引用，并被GC回收时。在GC回收该“弱键”时，这个“弱键”也同时会被添加到ReferenceQueue(queue)队列中。</li>
+<li>当下一次我们需要操作WeakHashMap时，会先同步table和queue。table中保存了全部的键值对，而queue中保存被GC回收的键值对；同步它们，就是删除table中被GC回收的键值对。</li>
+</ul>
+<h2 id="Set："><a href="#Set：" class="headerlink" title="Set："></a>Set：</h2><h4 id="HashSet："><a href="#HashSet：" class="headerlink" title="HashSet："></a>HashSet：</h4><ul>
+<li>基于HashMap实现。</li>
+<li>无序，无重复。</li>
+<li>非线程安全。</li>
+</ul>
+<h4 id="TreeSet："><a href="#TreeSet：" class="headerlink" title="TreeSet："></a>TreeSet：</h4><ul>
+<li>基于TreeMap实现。</li>
+<li>有序，无重复。</li>
+<li>非线程安全。</li>
+</ul>
+<p><br><br><br></p>
+<p>学习于非常详细的集合包详解<a href="http://www.cnblogs.com/skywang12345/p/3323085.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3323085.html</a></p>
+<p><br><br><br><br><br><br><br><br><br><br></p>
+</div><div class="tags"></div><div class="post-nav"><a class="pre" href="/2018/08/28/服务器集群控制仅有一台服务器执行定时任务/">服务器集群控制仅有一台服务器执行定时任务</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" target="_blank"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://yoursite.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/CAS算法拙见/">CAS算法拙见</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/Java并发编程：ThreadLocal/">Java并发编程：ThreadLocal</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/生产者消费者模型之Lock与Condition/">生产者消费者模型之Lock与Condition</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/生产者消费者模型之synchronized与Object/">生产者消费者模型之synchronized与Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/JDK发令枪CountDownLatch/">JDK发令枪CountDownLatch</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/JDK自带线程池/">JDK自带线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/Java并发编程：Lock/">Java并发编程：Lock</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/几种锁的概念/">几种锁的概念</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/记一次AOP-反射-自定义注解结合的应用/">记一次AOP,反射,自定义注解结合的应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/1秒30000QPS-前后端设计思路/">1秒30000QPS,前后端设计思路</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="广告位1" target="_blank">广告位1</a><ul></ul><a href="http://www.example2.com/" title="广告位2" target="_blank">广告位2</a><ul></ul><a href="http://www.example3.com/" title="广告位3" target="_blank">广告位3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">来一杯82年的Java.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
